@@ -1,34 +1,151 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Tableau Sportif </title>
-  <link rel="stylesheet" href="css/style.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scoreboard Sportif - Pro League</title>
+    <!-- Chargement de la police moderne Outfit -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="demo-banner">
-    🚧 <strong>notre git</strong> — data is stored in memory only.
-    view our code in git salah is the bosse
-    &nbsp;|&nbsp; <a href="https://github.com/oelkhalili2702-coder/Tableau-Score-Sportif.git">View on GitHub</a>
-  </div>
-    <header>
+    <!-- Décoration d'arrière-plan abstraite -->
+    <div class="background-decor"></div>
+    
+    <div class="container">
+        <header>
+            <h1>Tableau<span class="highlight">Sportif</span></h1>
+            <p>Classement en direct et gestion des scores</p>
+        </header>
 
-        <nav>
-        <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="contact.html">Contact</a></li>
-        </ul>
-        </nav>
-    </header>
-    
-    <main>
-        <h1>About Us</h1>
-        <p>Welcome to our score sportif! This project is designed to showcase our skills in web development and design. We aim to create a simple yet effective website that demonstrates our ability to build responsive and user-friendly interfaces.</p>
-        <p>Our team consists of passionate developers who are eager to learn and grow in the field of web development. We believe in the power of collaboration and are always looking for new opportunities to work on exciting projects.</p>
-    </main>
-    
-    <footer>
-        <p>&copy; 2024 Tableau Sportif . All rights reserved.</p>
-    </footer>
+        <main>
+            <!-- Section du tableau des scores -->
+            <section class="ranking-section glass-panel">
+                <div class="section-header">
+                    <h2>Classement des Équipes</h2>
+                    <span class="live-badge">En direct</span>
+                </div>
+                
+                <div class="table-container">
+                    <table class="scoreboard">
+                        <thead>
+                            <tr>
+                                <th>Rang</th>
+                                <th class="team-col">Équipe</th>
+                                <th>J</th>
+                                <th>V</th>
+                                <th>N</th>
+                                <th>D</th>
+                                <th>Pts</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Équipe 1 -->
+                            <tr class="rank-1">
+                                <td><span class="rank-number">1</span></td>
+                                <td class="team-info">
+                                    <div class="team-logo">🦅</div>
+                                    Les Aigles
+                                </td>
+                                <td>10</td>
+                                <td>8</td>
+                                <td>1</td>
+                                <td>1</td>
+                                <td class="points">25</td>
+                            </tr>
+                            <!-- Équipe 2 -->
+                            <tr class="rank-2">
+                                <td><span class="rank-number">2</span></td>
+                                <td class="team-info">
+                                    <div class="team-logo">🦁</div>
+                                    Lions FC
+                                </td>
+                                <td>10</td>
+                                <td>7</td>
+                                <td>2</td>
+                                <td>1</td>
+                                <td class="points">23</td>
+                            </tr>
+                            <!-- Équipe 3 -->
+                            <tr class="rank-3">
+                                <td><span class="rank-number">3</span></td>
+                                <td class="team-info">
+                                    <div class="team-logo">🦈</div>
+                                    Requins Bleus
+                                </td>
+                                <td>10</td>
+                                <td>5</td>
+                                <td>3</td>
+                                <td>2</td>
+                                <td class="points">18</td>
+                            </tr>
+                            <!-- Équipe 4 -->
+                            <tr>
+                                <td><span class="rank-number">4</span></td>
+                                <td class="team-info">
+                                    <div class="team-logo">🐺</div>
+                                    Loups du Nord
+                                </td>
+                                <td>10</td>
+                                <td>4</td>
+                                <td>1</td>
+                                <td>5</td>
+                                <td class="points">13</td>
+                            </tr>
+                            <!-- Équipe 5 -->
+                            <tr>
+                                <td><span class="rank-number">5</span></td>
+                                <td class="team-info">
+                                    <div class="team-logo">🐻</div>
+                                    Ours Bruns
+                                </td>
+                                <td>10</td>
+                                <td>2</td>
+                                <td>2</td>
+                                <td>6</td>
+                                <td class="points">8</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Section pour l'ajout de score -->
+            <section class="action-section glass-panel">
+                <h2>Ajouter un Score</h2>
+                <form class="match-form">
+                    <div class="match-inputs">
+                        <div class="team-input">
+                            <label>Équipe Domicile</label>
+                            <select>
+                                <option>Les Aigles</option>
+                                <option>Lions FC</option>
+                                <option>Requins Bleus</option>
+                                <option>Loups du Nord</option>
+                                <option>Ours Bruns</option>
+                            </select>
+                            <input type="number" placeholder="Score Domicile" min="0">
+                        </div>
+                        
+                        <div class="vs-badge">VS</div>
+                        
+                        <div class="team-input">
+                            <label>Équipe Extérieure</label>
+                            <select>
+                                <option>Lions FC</option>
+                                <option>Les Aigles</option>
+                                <option>Requins Bleus</option>
+                                <option>Loups du Nord</option>
+                                <option>Ours Bruns</option>
+                            </select>
+                            <input type="number" placeholder="Score Extérieur" min="0">
+                        </div>
+                    </div>
+                    <button type="button" class="btn-submit">Mettre à jour le classement</button>
+                    <p class="note">Note : Ceci est une interface purement HTML/CSS C'est u site static .</p>
+                </form>
+            </section>
+        </main>
+    </div>
+</body>
+</html>

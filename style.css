@@ -1,20 +1,344 @@
+/* Variables CSS pour un design sombre et sportif */
 :root {
-  --color-primary:     #4f46e5;
-  --color-primary-dk:  #4338ca;
-  --color-danger:      #ef4444;
-  --color-danger-dk:   #dc2626;
-  --color-bg:          #f8fafc;
-  --color-surface:     #ffffff;
-  --color-text:        #1e293b;
-  --color-muted:       #64748b;
-  --color-border:      #e2e8f0;
-  --color-highlight:   #818cf8;
-  --radius:            0.5rem;
-  --shadow:            0 2px 8px rgba(0, 0, 0, 0.08);
-  --transition:        0.2s ease;
-  --max-width:         900px;
-  --font-sans:         'Segoe UI', system-ui, -apple-system, sans-serif;
-  --font-mono:         'Fira Code', 'Consolas', monospace;
+    --bg-color: #0b0f19;
+    --panel-bg: rgba(22, 27, 34, 0.6);
+    --panel-border: rgba(255, 255, 255, 0.08);
+    --text-main: #f0f6fc;
+    --text-muted: #8b949e;
+    
+    /* Couleurs vibrantes */
+    --highlight: #00ff88;
+    --highlight-glow: rgba(0, 255, 136, 0.3);
+    --accent: #ff3366;
+    
+    /* Couleurs des médailles */
+    --rank-1: #ffd700;
+    --rank-2: #c0c0c0;
+    --rank-3: #cd7f32;
 }
-.demo-banner { background: #fef3c7; border-bottom: 1px solid #fcd34d; text-align: center; padding: 0.45rem 1rem; font-size: 1rem; color: #92400e; }
-.demo-banner a { color: #92400e; font-weight: 700; text-decoration: underline; }
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Outfit', sans-serif;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    padding: 3rem 1rem;
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* Base d'animation d'ambiance */
+.background-decor {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 70vw;
+    height: 70vw;
+    transform: translate(-50%, -50%);
+    background: radial-gradient(circle, var(--highlight-glow) 0%, transparent 60%);
+    filter: blur(120px);
+    z-index: -1;
+    animation: pulse 12s infinite alternate ease-in-out;
+}
+
+@keyframes pulse {
+    0% { transform: translate(-50%, -50%) scale(1); opacity: 0.6; }
+    100% { transform: translate(-50%, -50%) scale(1.3); opacity: 0.9; }
+}
+
+.container {
+    max-width: 1000px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+}
+
+header {
+    text-align: center;
+    animation: slideDown 0.8s ease-out;
+}
+
+header h1 {
+    font-size: 4rem;
+    font-weight: 800;
+    letter-spacing: -2px;
+    text-transform: uppercase;
+}
+
+.highlight {
+    color: var(--highlight);
+    text-shadow: 0 0 25px var(--highlight-glow);
+}
+
+header p {
+    color: var(--text-muted);
+    font-size: 1.2rem;
+    margin-top: 0.5rem;
+}
+
+/* Glassmorphism : Effet de verre premium */
+.glass-panel {
+    background: var(--panel-bg);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--panel-border);
+    border-radius: 24px;
+    padding: 2.5rem;
+    box-shadow: 0 25px 50px rgba(0,0,0,0.4);
+    animation: slideUp 0.8s ease-out backwards;
+}
+
+.ranking-section {
+    animation-delay: 0.2s;
+}
+
+.action-section {
+    animation-delay: 0.4s;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--panel-border);
+}
+
+h2 {
+    font-size: 1.8rem;
+    font-weight: 600;
+}
+
+/* Badge 'En direct' animé */
+.live-badge {
+    background: rgba(255, 51, 102, 0.15);
+    color: var(--accent);
+    padding: 0.5rem 1.2rem;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    border: 1px solid rgba(255, 51, 102, 0.3);
+}
+
+.live-badge::before {
+    content: '';
+    width: 10px;
+    height: 10px;
+    background: var(--accent);
+    border-radius: 50%;
+    animation: blink 1.5s infinite;
+    box-shadow: 0 0 10px var(--accent);
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(0.8); }
+}
+
+/* Styles du tableau */
+.table-container {
+    overflow-x: auto;
+}
+
+table.scoreboard {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 10px;
+    min-width: 600px;
+}
+
+th {
+    color: var(--text-muted);
+    font-weight: 400;
+    text-align: center;
+    padding: 1rem;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+}
+
+th.team-col {
+    text-align: left;
+}
+
+tbody tr {
+    background: rgba(255, 255, 255, 0.02);
+    transition: all 0.3s ease;
+    cursor: default;
+}
+
+tbody tr:hover {
+    background: rgba(255, 255, 255, 0.06);
+    transform: translateX(8px) scale(1.01);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+td {
+    padding: 1.2rem;
+    text-align: center;
+    vertical-align: middle;
+}
+
+td:first-child { border-radius: 12px 0 0 12px; }
+td:last-child { border-radius: 0 12px 12px 0; }
+
+.rank-number {
+    font-weight: 800;
+    font-size: 1.4rem;
+    color: var(--text-muted);
+}
+
+.rank-1 .rank-number { color: var(--rank-1); text-shadow: 0 0 15px rgba(255, 215, 0, 0.4); }
+.rank-2 .rank-number { color: var(--rank-2); }
+.rank-3 .rank-number { color: var(--rank-3); }
+
+.team-info {
+    display: flex;
+    align-items: center;
+    text-align: left;
+    gap: 1.2rem;
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+
+.team-logo {
+    width: 45px;
+    height: 45px;
+    background: rgba(255,255,255,0.05);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+    border: 1px solid var(--panel-border);
+}
+
+.points {
+    font-weight: 800;
+    font-size: 1.3rem;
+    color: var(--highlight);
+}
+
+/* Styles du formulaire */
+.match-form {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.match-inputs {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2rem;
+}
+
+.team-input {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+.team-input label {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+select, input {
+    background: rgba(0,0,0,0.4);
+    border: 1px solid var(--panel-border);
+    color: var(--text-main);
+    padding: 1.2rem;
+    border-radius: 12px;
+    outline: none;
+    font-size: 1rem;
+    transition: all 0.3s;
+}
+
+select:focus, input:focus {
+    border-color: var(--highlight);
+    box-shadow: 0 0 15px rgba(0, 255, 136, 0.1);
+}
+
+select option {
+    background: var(--bg-color);
+}
+
+.vs-badge {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--panel-border);
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 800;
+    color: var(--text-muted);
+    flex-shrink: 0;
+    font-size: 1.2rem;
+}
+
+.btn-submit {
+    background: var(--highlight);
+    color: #000;
+    border: none;
+    padding: 1.2rem;
+    border-radius: 12px;
+    font-size: 1.1rem;
+    font-weight: 800;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 1rem;
+}
+
+.btn-submit:hover {
+    background: #00cc6a;
+    box-shadow: 0 0 25px var(--highlight-glow);
+    transform: translateY(-3px);
+}
+
+.note {
+    text-align: center;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    font-style: italic;
+    opacity: 0.8;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    header h1 { font-size: 2.8rem; }
+    .match-inputs { flex-direction: column; gap: 1rem; }
+    .vs-badge { margin: 1rem 0; }
+    .glass-panel { padding: 1.5rem; }
+}
+
+/* Animations d'entrée */
+@keyframes slideDown {
+    from { opacity: 0; transform: translateY(-40px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideUp {
+    from { opacity: 0; transform: translateY(40px); }
+    to { opacity: 1; transform: translateY(0); }
+}
